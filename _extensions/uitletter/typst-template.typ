@@ -1,3 +1,15 @@
+#let to-string(content) = {
+  if content.has("text") {
+    content.text
+  } else if content.has("children") {
+    content.children.map(to-string).join("")
+  } else if content.has("body") {
+    to-string(content.body)
+  } else if content == [ ] {
+    " "
+  }
+}
+
 // This function gets your whole document as its `body`
 // and formats it as a simple letter.
 #let letter(
@@ -38,7 +50,9 @@
   // UiT: exempt from public disclosure text
   exempt_public: none,
 
-  // UiT: attachment (list)matthias
+  // UiT: attachment (list)
+  attachments: none,
+
   // UiT: language (norsk or english, no or en)
   lang: none,
 
@@ -165,8 +179,9 @@
     linebreak()
     text("—")
     if(sender_email != none) {
+      let sender_email_str = to-string(sender_email)
       linebreak()
-      link("mailto:"+sender_email, sender_email)
+      link("mailto:"+sender_email_str, sender_email)
     }
     if(sender_phone != none) {
       linebreak()
