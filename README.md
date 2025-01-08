@@ -17,7 +17,7 @@ Specify the sender, recipient, subject, etc. using YAML options, then write the 
 
 This document would be rendered as:
 
-![](letter.png)
+![](template.png)
 
 ### Options
 
