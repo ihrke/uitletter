@@ -6,7 +6,7 @@ Based on the Quarto-letter template <https://github.com/quarto-ext/typst-templat
 ## Installing
 
 ```bash
-quarto use template ihrke/quarto-uitletter
+quarto use template ihrke/uitletter
 ```
 
 This will install the extension and create an example qmd file that you can use as a starting place for your document.
