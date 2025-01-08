@@ -1,8 +1,17 @@
 // This function gets your whole document as its `body`
 // and formats it as a simple letter.
 #let letter(
-  // The letter's sender, which is display at the top of the page.
+  // The name of the letter's sender, which is displayed close to the bottom.
   sender: none,
+
+  // The sender's occupation, which is displayed under the name.
+  sender_occupation: none,
+
+  // The sender's email address, which is displayed under the occupation.
+  sender_email: none,
+
+  // The sender's phone number, which is displayed under the email address.
+  sender_phone: none,
 
   // The letter's recipient, which is displayed close to the top.
   recipient: none,
@@ -11,10 +20,7 @@
   date: none,
 
   // The subject line.
-  subject: none,
-
-  // The name with which the letter closes.
-  name: none,
+  title: none,
 
   // UiT faculty from which the letter is sent
   faculty: none,
@@ -25,6 +31,16 @@
   // UiT unit from which the letter is sent
   unit: none,
 
+  // UiT: your reference field
+  your_ref: none,
+  our_ref: none,
+
+  // UiT: exempt from public disclosure text
+  exempt_public: none,
+
+  // UiT: attachment (list)
+  attachments: none,
+
   // The letter's content.
   body
 ) = {
@@ -34,9 +50,9 @@
            margin: (left: 2.794cm, right: 1.8034cm,
                     top: 1.4cm, // 0.762cm plus height of empty header 0.04in
                     bottom: 2.413cm), // 0.9652cm plus 0.04in height + 0.53in spacing (footer-descent)
-           header: rect(fill: aqua, width: 100%,  height: 100%, inset: 4pt)[],
-           footer: rect(fill: aqua, width: 100%,  height: 100%, inset: 4pt)[
-            #text(font: "Arial", size: 8pt)[ 
+           //header: rect(fill: aqua, width: 100%,  height: 100%, inset: 4pt)[],
+           footer: //rect(fill: aqua, width: 100%,  height: 100%, inset: 4pt)[
+            text(font: "Arial", size: 8pt)[ 
             PO box 6050 Langnes, NO-9037 Tromsø 
             #h(1fr) / #h(1fr)
             +47 77 64 40 00 
@@ -46,7 +62,6 @@
             #link("https://uit.no")[uit.no]
             #h(1fr) / #h(1fr)
             organization number 970 422 528
-           ]
            ],
            footer-descent: 0.53in // "spacing" in word file
            )
@@ -62,6 +77,8 @@
         image("UiT_Logo_Eng_Bla_RGB.png", width: 11cm, height: auto)
   )
 
+
+  //   Faculty / Department / Unit
   // text-block for sender in special format
   // space between end of logo and text: 1.8cm
   // i.e.: 11cm-1.4cm+1.8cm = 11.4cm from left margin
@@ -70,53 +87,77 @@
   institutions = institutions.filter(val => val!=none)
 
   grid(columns: (11.4cm, 5.01cm),
+    rows: 1.32in, // proper distance for recipient box below
     hide(""),
     grid.cell()[
+      #set par(spacing: 0.5em)
       #text(weight: "bold", font: "Arial", size: 8pt, 
-      institutions.reduce( (s1,s2) => s1+" / "+s2 )
-    )
-    ]
-   //   Faculty / Department / Unit
-    
+        institutions.reduce( (s1,s2) => s1+" / "+s2 )
+      )
+
+      // references
+      #if(your_ref != none) {
+        text(font: "Arial", size: 8pt, "Your ref.: "+your_ref)
+      }
+
+      #if(our_ref != none) {
+        text(font: "Arial", size: 8pt, "Our ref.: "+our_ref)
+      }
+
+      #text(font: "Arial", size: 8pt, "Date: "+date)
+
+      #if(exempt_public != none) {
+        text(font: "Arial", size: 8pt, weight: "bold", exempt_public)
+      }
+    ]    
   )
 
-  // font is Arial for Sender/Receiver, Title, Attachments
-  // font is Times New Roman for Text
-  set text(font: "Arial")
-
-  // Display sender at top of page. If there's no sender
-  // add some hidden text to keep the same spacing.
-  text(9pt, if sender == none {
-    hide("a")
-  } else {
-    sender
-  })
-
-  v(1.8cm)
-
-  // Display recipient.
-  recipient
-
-  v(0.5cm)
-
-  // Display date. If there's no date add some hidden
-  // text to keep the same spacing.
-  align(right, if date != none {
-    date
-  } else {
-    hide("a")
-  })
-
-  v(2cm)
+  // recipient box: height 1.28in
+  text(font: "Arial", size: 11pt, recipient)
+  
+  // space between recipient and text
+  v(0.79in) 
 
   // Add the subject line, if any.
-  if subject != none {
-    pad(right: 10%, strong(subject))
+  if title != none {
+    pad(right: 10%, text(weight: "bold", font: "Arial", size: 14pt, title))
   }
 
   // Add body and name.
-  set text(font: "Times New Roman")
+  set text(font: "Times New Roman", size: 11pt)
   body
   v(1.25cm)
-  name
+  set par(spacing: 0.5em)
+  sender 
+
+  if(sender_occupation != none) {
+    linebreak()
+    sender_occupation
+  }
+
+  if(sender_email != none or sender_phone != none) {
+    linebreak()
+    text("—")
+    if(sender_email != none) {
+      linebreak()
+      sender_email
+    }
+    if(sender_phone != none) {
+      linebreak()
+      sender_phone
+    }
+
+  }
+
+  // attachments
+  if(attachments != none) {
+    v(1.25cm)
+    text(font: "Arial", size: 8pt)[ 
+      Attachments: 
+
+      #for attachment in attachments {
+          enum.item(attachment)
+      }
+    ]
+  }
 }

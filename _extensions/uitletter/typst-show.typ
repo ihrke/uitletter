@@ -1,15 +1,12 @@
 #show: letter.with(
-$if(sender)$
-  sender: [$sender$],
-$endif$
 $if(recipient)$
   recipient: [$recipient$],
 $endif$
-$if(sent)$
-  date: [$sent$],
+$if(date)$
+  date: [$date$],
 $endif$
-$if(subject)$
-  subject: [$subject$],
+$if(title)$
+  title: [$title$],
 $endif$
 $if(faculty)$
   faculty: [$faculty$],
@@ -20,7 +17,28 @@ $endif$
 $if(unit)$
   unit: [$unit$],
 $endif$
-$if(name)$
-  name: [$name$],
+$if(your_ref)$
+  your_ref: [$your_ref$],
+$endif$
+$if(our_ref)$
+  our_ref: [$our_ref$],
+$endif$
+$if(exempt_public)$
+  exempt_public: [$exempt_public$],
+$endif$
+$if(sender)$
+  sender: [$sender$],
+$endif$
+$if(sender_occupation)$
+  sender_occupation: [$sender_occupation$],
+$endif$
+$if(sender_email)$
+  sender_email: [$sender_email$],
+$endif$
+$if(sender_phone)$
+  sender_phone: [$sender_phone$],
+$endif$
+$if(attachments)$
+  attachments: ($for(attachments)$"$attachments$"$sep$, $endfor$),
 $endif$
 )

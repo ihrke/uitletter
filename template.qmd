@@ -1,18 +1,27 @@
 ---
-subject: "Revision of our Procurement Contract"
-name: "Jane Smith \ Regional Director"
-sender: "Jane Smith, Universal Exports, 1 Heavy Plaza, Morristown, NJ 07964"
+title: "Revision of our Procurement Contract"
+sender: "Jane Smith"
+sender_occupation: "Research Coordinator"
+sender_email: "jane.smith@uit.no"
+sender_phone: "+47 123 45 678"
 faculty: "Faculty of Health"
 department: "Institute for Psychology"
 unit: "RG Cognitive Neuroscience"
+your_ref: "JSM/rgcn/2023/06/09"
+our_ref: "UE/proc/2023/06/09"
+exempt_public: "Exempt from public disclosure."
+attachments:
+  - "Procurement Contract"
+  - "Appendix A"
 recipient: |
   Mr. John Doe \
   Acme Corp. \
   123 Glennwood Ave \
   Quarto Creek, VA 22438 \
-sent: "Morristown, June 9th, 2023"
+date: today
 format:
-  uitletter-typst: default
+  uitletter-typst:
+    keep-typ: true
 ---
 
 Dear Joe, 
