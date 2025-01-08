@@ -38,9 +38,7 @@
   // UiT: exempt from public disclosure text
   exempt_public: none,
 
-  // UiT: attachment (list)
-  attachments: none,
-
+  // UiT: attachment (list)matthias
   // UiT: language (norsk or english, no or en)
   lang: none,
 
@@ -168,7 +166,7 @@
     text("—")
     if(sender_email != none) {
       linebreak()
-      sender_email
+      link("mailto:"+sender_email, sender_email)
     }
     if(sender_phone != none) {
       linebreak()
