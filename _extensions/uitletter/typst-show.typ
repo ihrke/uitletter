@@ -41,6 +41,9 @@ $endif$
 $if(attachments)$
   attachments: ($for(attachments)$"$attachments$"$sep$, $endfor$),
 $endif$
+$if(signature)$
+  signature: [$signature$],
+$endif$
 $if(lang)$
   lang: [$lang$],
 $endif$

@@ -53,6 +53,9 @@
   // UiT: attachment (list)
   attachments: none,
 
+  // UiT: signature (image file)
+  signature: none,
+
   // UiT: language (norsk or english, no or en)
   lang: none,
 
@@ -166,7 +169,12 @@
   // Add body and name.
   set text(font: "Times New Roman", size: 11pt)
   body
-  v(1.25cm)
+
+  if(signature != none) {
+    image(to-string(signature), width: 4cm, height: auto)
+  } else {
+    v(1.25cm)
+  }
   set par(spacing: 0.5em)
   sender 
 
