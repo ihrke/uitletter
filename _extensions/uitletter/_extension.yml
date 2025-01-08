@@ -1,4 +1,4 @@
-title: Typst Letter for UiT - The arctic university of Norway
+title: Letter for UiT - The arctic university of Norway
 author: Matthias Mittner
 version: "0.0.1"
 quarto-required: ">=1.4.11"
@@ -8,4 +8,6 @@ contributes:
       template-partials:
         - typst-template.typ
         - typst-show.typ
+      format-resources:
+        - logo/UiT_Logo_Eng_Bla_RGB.png
 

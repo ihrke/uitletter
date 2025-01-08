@@ -1,4 +1,4 @@
-# Typst Letter Format for UiT - The arctic university of Tromsø
+# Letter Format for UiT - The arctic university of Tromsø
 
 Based on the Quarto-letter template <https://github.com/quarto-ext/typst-templates/tree/main/letter> which is based on the letter template published by the Typst team at <https://github.com/typst/templates/tree/main/letter>.
 
