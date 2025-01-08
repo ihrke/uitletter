@@ -11,6 +11,15 @@ $endif$
 $if(subject)$
   subject: [$subject$],
 $endif$
+$if(faculty)$
+  faculty: [$faculty$],
+$endif$
+$if(department)$
+  department: [$department$],
+$endif$
+$if(unit)$
+  unit: [$unit$],
+$endif$
 $if(name)$
   name: [$name$],
 $endif$

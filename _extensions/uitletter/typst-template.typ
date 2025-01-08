@@ -16,6 +16,15 @@
   // The name with which the letter closes.
   name: none,
 
+  // UiT faculty from which the letter is sent
+  faculty: none,
+
+  // UiT department from which the letter is sent
+  department: none,
+
+  // UiT unit from which the letter is sent
+  unit: none,
+
   // The letter's content.
   body
 ) = {
@@ -56,9 +65,20 @@
   // text-block for sender in special format
   // space between end of logo and text: 1.8cm
   // i.e.: 11cm-1.4cm+1.8cm = 11.4cm from left margin
-  par(width: 5cm)[
-    test
-  ]
+  // width of box: 8.27in (A4) - 1.10in (left margin) - 0.71in (right margin) - 11.4cm (distance) = 5.01cm
+  let institutions = (faculty, department, unit)
+  institutions = institutions.filter(val => val!=none)
+
+  grid(columns: (11.4cm, 5.01cm),
+    hide(""),
+    grid.cell()[
+      #text(weight: "bold", font: "Arial", size: 8pt, 
+      institutions.reduce( (s1,s2) => s1+" / "+s2 )
+    )
+    ]
+   //   Faculty / Department / Unit
+    
+  )
 
   // font is Arial for Sender/Receiver, Title, Attachments
   // font is Times New Roman for Text
