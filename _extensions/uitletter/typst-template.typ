@@ -41,6 +41,9 @@
   // UiT: attachment (list)
   attachments: none,
 
+  // UiT: language (norsk or english, no or en)
+  lang: none,
+
   // The letter's content.
   body
 ) = {
@@ -61,7 +64,12 @@
             #h(1fr) / #h(1fr)
             #link("https://uit.no")[uit.no]
             #h(1fr) / #h(1fr)
-            organization number 970 422 528
+            #if(lang != none and lang.text.starts-with("no")) [
+              organisasjonsnummer
+            ] else [
+              organization number
+            ]
+            970 422 528
            ],
            footer-descent: 0.53in // "spacing" in word file
            )
@@ -74,7 +82,11 @@
   // logo reaches 1.4 into the margin so that UiT text aligns with text
   place(top+left, 
         dx: -1.4cm,
-        image("UiT_Logo_Eng_Bla_RGB.png", width: 11cm, height: auto)
+        if(lang != none and lang.text.starts-with("no")) {
+          image("UiT_Logo_Bok_Bla_RGB.png", width: 11cm, height: auto)
+        } else {
+          image("UiT_Logo_Eng_Bla_RGB.png", width: 11cm, height: auto)
+        }
   )
 
 
@@ -97,14 +109,30 @@
 
       // references
       #if(your_ref != none) {
-        text(font: "Arial", size: 8pt, "Your ref.: "+your_ref)
+        text(font: "Arial", size: 8pt, 
+          if(lang != none and lang.text.starts-with("no")) {
+            "Deres ref.: "+your_ref
+          } else {
+            "Your ref.: "+your_ref
+          }
+        )
       }
 
       #if(our_ref != none) {
-        text(font: "Arial", size: 8pt, "Our ref.: "+our_ref)
+        text(font: "Arial", size: 8pt, 
+          if(lang != none and lang.text.starts-with("no")) {
+            "Vår ref.: "+our_ref
+          } else {
+            "Our ref.: "+our_ref
+          })
       }
 
-      #text(font: "Arial", size: 8pt, "Date: "+date)
+      #text(font: "Arial", size: 8pt, 
+        if(lang != none and lang.text.starts-with("no")) {
+          "Dato: "+date
+        } else {
+          "Date: "+date
+      })
 
       #if(exempt_public != none) {
         text(font: "Arial", size: 8pt, weight: "bold", exempt_public)

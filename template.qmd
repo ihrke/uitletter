@@ -10,6 +10,7 @@ unit: "RG Cognitive Neuroscience"
 your_ref: "JSM/rgcn/2023/06/09"
 our_ref: "UE/proc/2023/06/09"
 exempt_public: "Exempt from public disclosure."
+lang: "en" 
 attachments:
   - "Procurement Contract"
   - "Appendix A"

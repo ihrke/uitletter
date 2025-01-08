@@ -10,4 +10,5 @@ contributes:
         - typst-show.typ
       format-resources:
         - logo/UiT_Logo_Eng_Bla_RGB.png
+        - logo/UiT_Logo_Bok_Bla_RGB.png
 
