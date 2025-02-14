@@ -166,6 +166,10 @@
     pad(right: 10%, text(weight: "bold", font: "Arial", size: 14pt, title))
   }
 
+
+  // nicer level-1 headings
+  show heading.where(level: 1): set text(font: "Arial", size:13pt, weight: "bold", fill: blue.darken(50%))
+
   // Add body and name.
   set text(font: "Times New Roman", size: 11pt)
   body
